@@ -2,23 +2,25 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\SendMailable;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
-class SendEmail extends Command
+class SendEmailCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'email:send';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'send email on daily basis';
 
     /**
      * Create a new command instance.
@@ -34,9 +36,11 @@ class SendEmail extends Command
      * Execute the console command.
      *
      * @return mixed
+     *
+     *
      */
     public function handle()
     {
-        //
+        Mail::to('xyz@gmail.com')->send(new SendMailable());
     }
 }
